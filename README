@@ -1,0 +1,41 @@
+ Name: Reed Kass-Mullet
+ Date: 2/17/21
+ Class: COMP167
+ Assignment: HW2 - Part 2
+ Description: Implement a program which performs gibbs sampling
+
+5.2:
+
+When I run my program with a motif length of 6 it returns a number of different
+outputs. These outputs often have similar characteristics, such being a combination
+of C, A, and T. There are some outputs which are produced commonly, such as CATCATT.
+Through looking at a number of outputs, I found that it is highly dependant on the initial
+input, for example, if a string of TTTT is initially selected, it will almost always result
+ in a quick return of a motif which includes TTTT.
+
+5.3
+
+After seeing the outputs of my program, I think that the convergence critereon implemented
+is not strong enough, and is too simple. The output produced is often extremely dependant
+on what is initially chosen, rather than what the actual optimal alignment should be.
+This approach to defining convergence relies I think too heavily on a short-sigted version
+of what is optimal, as it is entirely based on what is initially chosem, rather than
+pushing through local maximums to find a much better solution that is a much greater
+number of steps away from being found. I think an example of a better version of a
+convergence criteria could be something which involves tracking the change in position for
+any of the sequences. Getting a stable outcome where none of the positions change would 
+do a better job of tracking an overall measure of similarity, rather than just focusing
+on the motif of a single sequence.
+
+General README info:
+This program can be compiled with the makefile I have also provided.
+
+You can change the motif length by changing the motif_len variable in main.
+
+The convergence method cannot be easily changed.
+
+The code functions in a general sense through a while loop which checks the convergence 
+condition. Within this while loop, S* is chosen, and the pssm matrix is created and scored
+from the not S* sequences. From the pssm matrix, the different prefixes for s* are scored
+and the best one is chosen to replace the prefix position for the s* sequence. Then, the s* 
+sequence is updated to a new sequence which is different from the prior one chosen.
